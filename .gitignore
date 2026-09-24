@@ -1,0 +1,10 @@
+target/
+*.class
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+
+# real login credentials - never commit; see saucedemo-credentials.properties.example
+src/test/resources/saucedemo-credentials.properties
