@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/product_sort.feature",
         glue = {"com.saucedemo.automation.steps", "com.saucedemo.automation.hooks"},
-        plugin = {"pretty", "summary"}
+        plugin = {"pretty", "summary", "json:target/cucumber-reports/product_sort.json"}
 )
 public class ProductSortRunner {
 }

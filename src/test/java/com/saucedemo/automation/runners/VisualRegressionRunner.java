@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/visual_regression.feature",
         glue = {"com.saucedemo.automation.steps", "com.saucedemo.automation.hooks"},
-        plugin = {"pretty", "summary"}
+        plugin = {"pretty", "summary", "json:target/cucumber-reports/visual_regression.json"}
 )
 public class VisualRegressionRunner {
 }
