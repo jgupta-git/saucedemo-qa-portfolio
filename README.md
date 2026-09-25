@@ -75,16 +75,9 @@ per-run, e.g. `mvn test -Dheadless=false`.
   access-denied message (reuses `login_validation`'s error-check step).
 
 **`visual_regression.feature`**
-- Element-level pixel-diff on the backpack product image (`visual_user`'s
-  one *consistently* broken image - its prices are randomized per session,
-  which would make a full-page screenshot diff flaky, so the check is
-  scoped to the one deterministic target). No `hasScreenshot()` API is
-  available in this Playwright/JUnit4 setup, so the comparison is done
-  directly: capture the element's PNG, decode both images, and diff pixels
-  with a small tolerance for anti-aliasing noise (`ImageComparator`).
-- No saved baseline file: `standard_user`'s image is captured live within
-  the same scenario and compared in memory against `visual_user`'s (the
-  scenario logs out and back in as a different user partway through). That
-  sidesteps an entire class of baseline-file problems - missing file, stale
-  file, a separate capture step to maintain - since a known-good account is
-  already available to compare against live.
+- Element-level pixel-diff on the backpack image (`visual_user`'s one
+  consistently broken image; prices are randomized, so a full-page diff
+  would be flaky) via a custom `ImageComparator` - no `hasScreenshot()` API
+  in this Playwright/JUnit4 setup.
+- No saved baseline: `standard_user`'s image is captured live and compared
+  in memory against `visual_user`'s within the same scenario.
