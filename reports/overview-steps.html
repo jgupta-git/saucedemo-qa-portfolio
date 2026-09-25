@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports (no 1) - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+        <th>Number</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>SauceDemo QA Automation</td>
+        <td>1</td>
+      <td>25 Sep 2026, 10:36</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">com.saucedemo.automation.hooks.Hooks.setUp()</td>
+              <td>21</td>
+              <td class="duration" data-value="987822609">0.987</td>
+              <td class="duration" data-value="987822609">4.430</td>
+              <td class="duration" data-value="20744274800">20.744</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.hooks.Hooks.tearDown()</td>
+              <td>21</td>
+              <td class="duration" data-value="121226657">0.121</td>
+              <td class="duration" data-value="121226657">0.155</td>
+              <td class="duration" data-value="2545759800">2.545</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.CommonSteps.i_am_logged_in_to_saucedemo()</td>
+              <td>9</td>
+              <td class="duration" data-value="538290577">0.538</td>
+              <td class="duration" data-value="538290577">0.637</td>
+              <td class="duration" data-value="4844615200">4.844</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.CommonSteps.i_am_logged_in_to_saucedemo_as(java.lang.String)</td>
+              <td>2</td>
+              <td class="duration" data-value="497407100">0.497</td>
+              <td class="duration" data-value="497407100">0.498</td>
+              <td class="duration" data-value="994814200">0.994</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.LoginSteps.i_am_on_the_saucedemo_login_page()</td>
+              <td>10</td>
+              <td class="duration" data-value="392755870">0.392</td>
+              <td class="duration" data-value="392755870">0.417</td>
+              <td class="duration" data-value="3927558700">3.927</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.LoginSteps.i_log_in_with_username_and_password(java.lang.String,java.lang.String)</td>
+              <td>2</td>
+              <td class="duration" data-value="100581350">0.100</td>
+              <td class="duration" data-value="100581350">0.104</td>
+              <td class="duration" data-value="201162700">0.201</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.LoginSteps.i_log_in_with_username_using_the_universal_password(java.lang.String)</td>
+              <td>8</td>
+              <td class="duration" data-value="114020150">0.114</td>
+              <td class="duration" data-value="114020150">0.137</td>
+              <td class="duration" data-value="912161200">0.912</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.LoginSteps.i_should_be_logged_in_successfully()</td>
+              <td>5</td>
+              <td class="duration" data-value="12593760">0.012</td>
+              <td class="duration" data-value="12593760">0.022</td>
+              <td class="duration" data-value="62968800">0.062</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.LoginSteps.i_should_see_the_login_error(java.lang.String)</td>
+              <td>6</td>
+              <td class="duration" data-value="15863800">0.015</td>
+              <td class="duration" data-value="15863800">0.021</td>
+              <td class="duration" data-value="95182800">0.095</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.i_add_two_items_to_my_cart(java.lang.String,java.lang.String)</td>
+              <td>2</td>
+              <td class="duration" data-value="113405700">0.113</td>
+              <td class="duration" data-value="113405700">0.117</td>
+              <td class="duration" data-value="226811400">0.226</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.i_complete_checkout_with_valid_information()</td>
+              <td>2</td>
+              <td class="duration" data-value="299629450">0.299</td>
+              <td class="duration" data-value="299629450">0.301</td>
+              <td class="duration" data-value="599258900">0.599</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.i_download_the_pdf_order_receipt()</td>
+              <td>1</td>
+              <td class="duration" data-value="1247804400">1.247</td>
+              <td class="duration" data-value="1247804400">1.247</td>
+              <td class="duration" data-value="1247804400">1.247</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.the_on_screen_order_total_should_equal_item_total_plus_tax()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.the_on_screen_summary_should_show(java.lang.String,java.lang.String,java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.the_order_should_complete_successfully()</td>
+              <td>2</td>
+              <td class="duration" data-value="4585150">0.004</td>
+              <td class="duration" data-value="4585150">0.005</td>
+              <td class="duration" data-value="9170300">0.009</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.the_pdf_line_items_should_match_the_cart()</td>
+              <td>1</td>
+              <td class="duration" data-value="12794900">0.012</td>
+              <td class="duration" data-value="12794900">0.012</td>
+              <td class="duration" data-value="12794900">0.012</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.the_pdf_receipt_should_match_the_on_screen_summary()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.the_pdf_receipt_should_show(java.lang.String,java.lang.String,java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.OrderPdfReceiptSteps.the_pdf_total_should_equal_item_total_plus_tax()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.ProductImageIntegritySteps.every_product_image_should_be_unique()</td>
+              <td>1</td>
+              <td class="duration" data-value="55244700">0.055</td>
+              <td class="duration" data-value="55244700">0.055</td>
+              <td class="duration" data-value="55244700">0.055</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.ProductImageIntegritySteps.every_product_should_show_the_same_broken_image()</td>
+              <td>1</td>
+              <td class="duration" data-value="32704200">0.032</td>
+              <td class="duration" data-value="32704200">0.032</td>
+              <td class="duration" data-value="32704200">0.032</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.ProductSortSteps.i_sort_products_by(java.lang.String)</td>
+              <td>3</td>
+              <td class="duration" data-value="11328000">0.011</td>
+              <td class="duration" data-value="11328000">0.016</td>
+              <td class="duration" data-value="33984000">0.033</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.ProductSortSteps.the_products_should_be_listed_in_price_order(java.lang.String)</td>
+              <td>2</td>
+              <td class="duration" data-value="42619650">0.042</td>
+              <td class="duration" data-value="42619650">0.053</td>
+              <td class="duration" data-value="85239300">0.085</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.ProductSortSteps.the_products_should_not_be_listed_in_descending_price_order()</td>
+              <td>1</td>
+              <td class="duration" data-value="25549800">0.025</td>
+              <td class="duration" data-value="25549800">0.025</td>
+              <td class="duration" data-value="25549800">0.025</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.SessionManagementSteps.i_add_one_item_to_my_cart(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="40900400">0.040</td>
+              <td class="duration" data-value="40900400">0.040</td>
+              <td class="duration" data-value="40900400">0.040</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.SessionManagementSteps.i_go_back_in_the_browser()</td>
+              <td>1</td>
+              <td class="duration" data-value="7602800">0.007</td>
+              <td class="duration" data-value="7602800">0.007</td>
+              <td class="duration" data-value="7602800">0.007</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.SessionManagementSteps.i_log_out()</td>
+              <td>1</td>
+              <td class="duration" data-value="1004470100">1.004</td>
+              <td class="duration" data-value="1004470100">1.004</td>
+              <td class="duration" data-value="1004470100">1.004</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.SessionManagementSteps.i_reset_the_app_state()</td>
+              <td>1</td>
+              <td class="duration" data-value="1035897500">1.035</td>
+              <td class="duration" data-value="1035897500">1.035</td>
+              <td class="duration" data-value="1035897500">1.035</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.SessionManagementSteps.the_cart_badge_should_be_cleared()</td>
+              <td>1</td>
+              <td class="duration" data-value="4294400">0.004</td>
+              <td class="duration" data-value="4294400">0.004</td>
+              <td class="duration" data-value="4294400">0.004</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.VisualRegressionSteps.i_capture_the_backpack_image_as_the_known_good_image()</td>
+              <td>2</td>
+              <td class="duration" data-value="116215100">0.116</td>
+              <td class="duration" data-value="116215100">0.119</td>
+              <td class="duration" data-value="232430200">0.232</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.VisualRegressionSteps.i_log_out_and_log_in_as(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="1103968500">1.103</td>
+              <td class="duration" data-value="1103968500">1.103</td>
+              <td class="duration" data-value="1103968500">1.103</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.VisualRegressionSteps.the_backpack_image_should_match_the_known_good_image()</td>
+              <td>1</td>
+              <td class="duration" data-value="144566900">0.144</td>
+              <td class="duration" data-value="144566900">0.144</td>
+              <td class="duration" data-value="144566900">0.144</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.saucedemo.automation.steps.VisualRegressionSteps.the_backpack_image_should_not_match_the_known_good_image()</td>
+              <td>1</td>
+              <td class="duration" data-value="124075300">0.124</td>
+              <td class="duration" data-value="124075300">0.124</td>
+              <td class="duration" data-value="124075300">0.124</td>
+              <td class="passed">100.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>33</td>
+            <td>115</td>
+            <td class="duration">0.350</td>
+            <td class="duration">20.744</td>
+            <td class="duration">40.355</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>
