@@ -13,10 +13,8 @@ import com.microsoft.playwright.Playwright;
  * class outside this one touching Playwright directly. Step -> Service ->
  * Page Object all reach the live Page through here.
  *
- * This is the same shape a Selenium port would take with
- * ThreadLocal&lt;WebDriver&gt; instead - only this class and the Page
- * Objects' internals would need to change.
  */
+
 public final class DriverManager {
 
     private static final ThreadLocal<Playwright> PLAYWRIGHT = new ThreadLocal<>();

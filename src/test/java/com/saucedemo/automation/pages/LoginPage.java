@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage open() {
-        page.navigate(TestConfig.BASE_URL + "/");
+        page.navigate(TestConfig.baseUrl() + "/");
         usernameInput.waitFor();
         return this;
     }

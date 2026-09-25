@@ -41,11 +41,40 @@ public class OrderPdfReceiptSteps {
         assertTrue("Expected the order-complete page to be displayed", checkoutService.orderCompleted());
     }
 
+    @Then("the on-screen order summary should show item total {string}, tax {string}, and total {string}")
+    public void the_on_screen_summary_should_show(String expectedItemTotal, String expectedTax, String expectedTotal) {
+        ReceiptSummary onScreen = checkoutService.onScreenSummary();
+        assertEquals("Item total does not match the expected price - did a product price change?",
+                new BigDecimal(expectedItemTotal), onScreen.getItemTotal());
+        assertEquals("Tax does not match the expected amount",
+                new BigDecimal(expectedTax), onScreen.getTax());
+        assertEquals("Total does not match the expected amount",
+                new BigDecimal(expectedTotal), onScreen.getTotal());
+    }
+
+    @And("the on-screen order total should equal item total plus tax")
+    public void the_on_screen_order_total_should_equal_item_total_plus_tax() {
+        ReceiptSummary onScreen = checkoutService.onScreenSummary();
+        BigDecimal expectedTotal = onScreen.getItemTotal().add(onScreen.getTax());
+        assertEquals("On-screen total does not equal item total + tax - arithmetic bug in the checkout overview",
+                expectedTotal, onScreen.getTotal());
+    }
+
     @And("I download the PDF order receipt")
     public void i_download_the_pdf_order_receipt() throws IOException {
         Path targetDir = Paths.get("target", "downloads");
         Files.createDirectories(targetDir);
         pdfSummary = checkoutService.downloadAndParsePdfReceipt(targetDir);
+    }
+
+    @Then("the PDF receipt should show item total {string}, tax {string}, and total {string}")
+    public void the_pdf_receipt_should_show(String expectedItemTotal, String expectedTax, String expectedTotal) {
+        assertEquals("PDF item total does not match the expected price - did a product price change?",
+                new BigDecimal(expectedItemTotal), pdfSummary.getItemTotal());
+        assertEquals("PDF tax does not match the expected amount",
+                new BigDecimal(expectedTax), pdfSummary.getTax());
+        assertEquals("PDF total does not match the expected amount",
+                new BigDecimal(expectedTotal), pdfSummary.getTotal());
     }
 
     @And("the PDF receipt's item total, tax, and total should match the on-screen summary")
