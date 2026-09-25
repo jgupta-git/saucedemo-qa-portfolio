@@ -2,8 +2,7 @@
 
 Automation portfolio project against https://www.saucedemo.com/. Built with
 Playwright for Java + Cucumber + JUnit4, structured as a 3-layer framework
-(Step Definitions -> Service -> Page Object) with DTOs for test data -
-same architecture as the Mercury Insurance project.
+(Step Definitions -> Service -> Page Object) with DTOs for test data.
 
 ## Setup & running
 
