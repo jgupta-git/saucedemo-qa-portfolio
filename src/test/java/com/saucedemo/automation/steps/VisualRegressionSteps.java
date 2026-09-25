@@ -6,6 +6,7 @@ import com.saucedemo.automation.services.LoginService;
 import com.saucedemo.automation.services.ProductCatalogService;
 import com.saucedemo.automation.services.SessionService;
 import com.saucedemo.automation.util.ImageComparator;
+import com.saucedemo.automation.util.ScreenshotHelper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -40,6 +41,7 @@ public class VisualRegressionSteps {
     @And("I capture the backpack product image as the known-good image")
     public void i_capture_the_backpack_image_as_the_known_good_image() {
         knownGoodImage = productCatalogService.backpackImageLocator().screenshot();
+        ScreenshotHelper.attachFile(knownGoodImage, "image/png", "Known-good backpack image (standard_user)");
     }
 
     @When("I log out and log in to SauceDemo as {string}")
@@ -52,6 +54,8 @@ public class VisualRegressionSteps {
     @Then("the backpack product image should match the known-good image")
     public void the_backpack_image_should_match_the_known_good_image() {
         byte[] actual = productCatalogService.backpackImageLocator().screenshot();
+        ScreenshotHelper.attachFile(actual, "image/png", "Actual backpack image (standard_user)");
+        ScreenshotHelper.log("Pixel diff <= " + (MAX_FRACTION_DIFFERENT * 100) + "% => MATCH");
         assertTrue("Backpack image does not match its own known-good capture from moments earlier",
                 ImageComparator.imagesMatch(actual, knownGoodImage, MAX_FRACTION_DIFFERENT));
     }
@@ -59,6 +63,8 @@ public class VisualRegressionSteps {
     @Then("the backpack product image should not match the known-good image")
     public void the_backpack_image_should_not_match_the_known_good_image() {
         byte[] actual = productCatalogService.backpackImageLocator().screenshot();
+        ScreenshotHelper.attachFile(actual, "image/png", "Actual backpack image (visual_user)");
+        ScreenshotHelper.log("visual_user's image differs from known-good => EXPECTED MISMATCH");
         assertFalse("Expected visual_user's backpack image to visibly differ from the known-good capture, "
                         + "but it matched - has this bug been fixed?",
                 ImageComparator.imagesMatch(actual, knownGoodImage, MAX_FRACTION_DIFFERENT));

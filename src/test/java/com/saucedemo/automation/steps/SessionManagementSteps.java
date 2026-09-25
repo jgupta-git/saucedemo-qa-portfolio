@@ -16,8 +16,8 @@ public class SessionManagementSteps {
         sessionService.addItemToCart(productName);
     }
 
-    @And("I reset the app state")
-    public void i_reset_the_app_state() {
+    @And("I reset the app state via the hamburger menu")
+    public void i_reset_the_app_state_via_the_hamburger_menu() {
         sessionService.resetAppState();
     }
 

@@ -5,6 +5,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.TimeoutError;
 import com.saucedemo.automation.config.TestConfig;
 import com.saucedemo.automation.dto.LoginCredentials;
+import com.saucedemo.automation.util.ScreenshotHelper;
 
 /**
  * Page Object for the SauceDemo login page. Locators use the app's own
@@ -30,12 +31,14 @@ public class LoginPage extends BasePage {
     public LoginPage open() {
         page.navigate(TestConfig.baseUrl() + "/");
         usernameInput.waitFor();
+        ScreenshotHelper.capture("Login Page");
         return this;
     }
 
     public void login(LoginCredentials credentials) {
         usernameInput.fill(credentials.getUsername());
         passwordInput.fill(credentials.getPassword());
+        ScreenshotHelper.capture("Username and password entered");
         loginButton.click();
     }
 
@@ -49,6 +52,7 @@ public class LoginPage extends BasePage {
     }
 
     public String errorMessageText() {
+    	ScreenshotHelper.capture("Login Error message");
         return errorMessage.innerText();
     }
 }

@@ -3,6 +3,7 @@ package com.saucedemo.automation.pages;
 import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.saucedemo.automation.util.ScreenshotHelper;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,6 +29,7 @@ public class CheckoutCompletePage extends BasePage {
     }
 
     public boolean isDisplayed() {
+    	ScreenshotHelper.capture("order completed");
         return completeHeader.isVisible();
     }
 

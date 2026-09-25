@@ -3,6 +3,7 @@ package com.saucedemo.automation.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.saucedemo.automation.util.ScreenshotHelper;
 
 /**
  * Page Object for the hamburger side menu present on every authenticated
@@ -26,12 +27,16 @@ public class NavigationMenu extends BasePage {
 
     public void resetAppState() {
         openMenuButton.click();
+        ScreenshotHelper.capture("menu");
         resetAppStateLink.click();
+        ScreenshotHelper.capture("reset");
     }
 
     public LoginPage logout() {
         openMenuButton.click();
+        ScreenshotHelper.capture("menu");
         logoutLink.click();
+        ScreenshotHelper.capture("log out");
         return new LoginPage(page);
     }
 }

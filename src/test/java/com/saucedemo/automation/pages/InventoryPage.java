@@ -3,7 +3,9 @@ package com.saucedemo.automation.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.TimeoutError;
+import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.SelectOption;
+import com.saucedemo.automation.util.ScreenshotHelper;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -47,6 +49,7 @@ public class InventoryPage extends BasePage {
     public boolean isDisplayed() {
         try {
             pageTitle.waitFor(new Locator.WaitForOptions().setTimeout(15000));
+            ScreenshotHelper.capture("Successful Login");
             return "Products".equals(pageTitle.innerText());
         } catch (TimeoutError e) {
             return false;
@@ -55,6 +58,7 @@ public class InventoryPage extends BasePage {
 
     public InventoryPage addToCart(String productName) {
         page.locator("[data-test='add-to-cart-" + slug(productName) + "']").click();
+        ScreenshotHelper.capture("add to cart");
         return this;
     }
 
@@ -64,12 +68,15 @@ public class InventoryPage extends BasePage {
     }
 
     public boolean isCartBadgeVisible() {
+    	ScreenshotHelper.capture("cart");
         return cartBadge.isVisible();
     }
 
     /** Verified live: the dropdown's visible option text is a plain label, e.g. "Price (high to low)". */
     public InventoryPage sortBy(String optionLabel) {
         sortDropdown.selectOption(new SelectOption().setLabel(optionLabel));
+        page.waitForLoadState(LoadState.NETWORKIDLE);
+    	ScreenshotHelper.capture("Product Image");
         return this;
     }
 
@@ -78,13 +85,17 @@ public class InventoryPage extends BasePage {
     }
 
     public List<BigDecimal> productPricesInOrder() {
+    	page.waitForLoadState(LoadState.NETWORKIDLE);
+    	ScreenshotHelper.capture("Product Image");
         return itemPrices.allInnerTexts().stream()
                 .map(text -> new BigDecimal(text.replace("$", "")))
                 .collect(Collectors.toList());
     }
 
     public List<String> productImageSources() {
-        return itemImages.all().stream()
+    	page.waitForLoadState(LoadState.NETWORKIDLE);
+    	ScreenshotHelper.capture("Product Image");
+    	return itemImages.all().stream()
                 .map(image -> image.getAttribute("src"))
                 .collect(Collectors.toList());
     }

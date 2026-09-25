@@ -8,9 +8,9 @@ Feature: Session and app-state management
     Given I am logged in to SauceDemo
 
   @Scenario-1 @positive
-  Scenario: Reset App State clears the cart
+  Scenario: Reset App State clears the cart without refreshing the page
     When I add "Sauce Labs Backpack" to my cart
-    And I reset the app state
+    And I reset the app state via the hamburger menu
     Then the cart badge should be cleared
 
   @Scenario-2 @negative

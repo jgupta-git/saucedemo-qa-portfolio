@@ -9,7 +9,10 @@ import com.saucedemo.automation.pages.CheckoutStepOnePage;
 import com.saucedemo.automation.pages.CheckoutStepTwoPage;
 import com.saucedemo.automation.pages.InventoryPage;
 import com.saucedemo.automation.util.PdfReceiptParser;
+import com.saucedemo.automation.util.ScreenshotHelper;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -22,6 +25,7 @@ import java.util.List;
 public class CheckoutService {
 
     private final InventoryPage inventoryPage;
+    private CartPage cartPage;
     private CheckoutStepTwoPage checkoutStepTwoPage;
     private CheckoutCompletePage checkoutCompletePage;
     private ReceiptSummary onScreenSummary;
@@ -37,15 +41,23 @@ public class CheckoutService {
         }
     }
 
-    public void proceedThroughCheckout(CheckoutInfo info) {
+    public void openCart() {
         CartPage cartPage = inventoryPage.openCart();
+        ScreenshotHelper.capture("Cart page");
+        this.cartPage = cartPage;
+    }
+
+    public void proceedThroughCheckout(CheckoutInfo info) {
         CheckoutStepOnePage stepOne = cartPage.checkout();
+        ScreenshotHelper.capture("Checkout - your information");
         checkoutStepTwoPage = stepOne.fillInfoAndContinue(info);
+        ScreenshotHelper.capture("Checkout - order summary");
         onScreenSummary = checkoutStepTwoPage.readSummary();
-        checkoutCompletePage = checkoutStepTwoPage.finish();
     }
 
     public boolean orderCompleted() {
+    	checkoutCompletePage = checkoutStepTwoPage.finish();
+        ScreenshotHelper.capture("Checkout complete");
         return checkoutCompletePage.isDisplayed();
     }
 
@@ -55,6 +67,13 @@ public class CheckoutService {
 
     public ReceiptSummary downloadAndParsePdfReceipt(Path targetDir) {
         downloadedPdfPath = checkoutCompletePage.generatePdfOrder(targetDir);
+        ScreenshotHelper.capture("Checkout complete - before PDF parse");
+        try {
+            byte[] pdfBytes = Files.readAllBytes(downloadedPdfPath);
+            ScreenshotHelper.attachFile(pdfBytes, "application/pdf", "Downloaded receipt PDF");
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to read PDF for report attachment", e);
+        }
         return PdfReceiptParser.parse(downloadedPdfPath);
     }
 
