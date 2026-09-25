@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SauceDemo Architecture</title>
+<style>
+  body { margin: 0; padding: 20px; background: #fff; }
+  @media print { body { padding: 0; } }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 780 920" xmlns="http://www.w3.org/2000/svg" style="font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; display: block;">
+  <title>SauceDemo Automation Architecture</title>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#666" />
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #1a1a1a; }
+    .label { font-size: 11px; fill: #666; font-weight: 600; letter-spacing: 0.5px; }
+    .box-title { font-size: 12px; font-weight: 600; }
+    .box-sub { font-size: 10px; fill: #666; }
+    .tier-label { font-size: 13px; font-weight: 700; fill: #666; letter-spacing: 1px; }
+    .file-name { font-size: 10px; font-family: ui-monospace, monospace; fill: #666; }
+  </style>
+
+  <rect width="780" height="920" fill="#fff" rx="8" />
+
+  <text x="390" y="32" text-anchor="middle" font-size="16" font-weight="700">SauceDemo 3-Layer Architecture</text>
+
+  <!-- LAYER 1: BDD / CUCUMBER -->
+  <rect x="16" y="50" width="748" height="195" rx="6" fill="#fafafa" stroke="#e5e7eb" stroke-width="1" />
+  <text x="32" y="70" class="tier-label">LAYER 1 — BDD / CUCUMBER</text>
+
+  <rect x="32" y="82" width="160" height="68" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" />
+  <text x="112" y="103" text-anchor="middle" class="box-title" fill="#2563eb">Feature Files</text>
+  <text x="112" y="117" text-anchor="middle" class="file-name">.feature (Gherkin)</text>
+  <text x="112" y="131" text-anchor="middle" class="box-sub">6 features, 21 scenarios</text>
+  <text x="112" y="143" text-anchor="middle" class="box-sub">Tags: @smoke @functional</text>
+
+  <rect x="232" y="82" width="160" height="68" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" />
+  <text x="312" y="103" text-anchor="middle" class="box-title" fill="#2563eb">Runners</text>
+  <text x="312" y="117" text-anchor="middle" class="file-name">*Runner.java</text>
+  <text x="312" y="131" text-anchor="middle" class="box-sub">@RunWith(Cucumber)</text>
+  <text x="312" y="143" text-anchor="middle" class="box-sub">JUnit4, per-feature</text>
+
+  <rect x="432" y="82" width="160" height="68" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" />
+  <text x="512" y="103" text-anchor="middle" class="box-title" fill="#2563eb">Step Definitions</text>
+  <text x="512" y="117" text-anchor="middle" class="file-name">*Steps.java</text>
+  <text x="512" y="131" text-anchor="middle" class="box-sub">@Given @When @Then</text>
+  <text x="512" y="143" text-anchor="middle" class="box-sub">Thin — delegates to services</text>
+
+  <rect x="632" y="82" width="120" height="68" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" />
+  <text x="692" y="103" text-anchor="middle" class="box-title" fill="#ea580c">Hooks</text>
+  <text x="692" y="117" text-anchor="middle" class="file-name">Hooks.java</text>
+  <text x="692" y="131" text-anchor="middle" class="box-sub">@Before @After</text>
+  <text x="692" y="143" text-anchor="middle" class="box-sub">@AfterStep screenshots</text>
+
+  <line x1="192" y1="116" x2="228" y2="116" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <line x1="392" y1="116" x2="428" y2="116" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+
+  <text x="32" y="170" class="file-name">login_validation  order_pdf_receipt  product_sort</text>
+  <text x="32" y="183" class="file-name">product_image_integrity  session_management  visual_regression</text>
+
+  <rect x="632" y="160" width="120" height="44" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" />
+  <text x="692" y="178" text-anchor="middle" class="box-title" fill="#ea580c">Config</text>
+  <text x="692" y="192" text-anchor="middle" class="file-name">.properties</text>
+
+  <!-- LAYER 2: SERVICES -->
+  <rect x="16" y="260" width="748" height="160" rx="6" fill="#fafafa" stroke="#e5e7eb" stroke-width="1" />
+  <text x="32" y="280" class="tier-label">LAYER 2 — SERVICES (Business Logic)</text>
+
+  <rect x="32" y="292" width="160" height="56" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
+  <text x="112" y="313" text-anchor="middle" class="box-title" fill="#16a34a">LoginService</text>
+  <text x="112" y="327" text-anchor="middle" class="box-sub">login, error checks</text>
+  <text x="112" y="340" text-anchor="middle" class="file-name">LoginService.java</text>
+
+  <rect x="212" y="292" width="160" height="56" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
+  <text x="292" y="313" text-anchor="middle" class="box-title" fill="#16a34a">CheckoutService</text>
+  <text x="292" y="327" text-anchor="middle" class="box-sub">cart → checkout → PDF</text>
+  <text x="292" y="340" text-anchor="middle" class="file-name">CheckoutService.java</text>
+
+  <rect x="392" y="292" width="170" height="56" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
+  <text x="477" y="313" text-anchor="middle" class="box-title" fill="#16a34a">ProductCatalogService</text>
+  <text x="477" y="327" text-anchor="middle" class="box-sub">sort, prices, images</text>
+  <text x="477" y="340" text-anchor="middle" class="file-name">ProductCatalogService.java</text>
+
+  <rect x="582" y="292" width="170" height="56" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" />
+  <text x="667" y="313" text-anchor="middle" class="box-title" fill="#16a34a">SessionService</text>
+  <text x="667" y="327" text-anchor="middle" class="box-sub">reset, logout, back</text>
+  <text x="667" y="340" text-anchor="middle" class="file-name">SessionService.java</text>
+
+  <text x="32" y="378" class="box-sub">Services orchestrate page objects — no Playwright calls, no assertions. Steps call services; services call pages.</text>
+  <text x="32" y="393" class="box-sub">Returns DTOs (ReceiptSummary, LineItem) so steps can assert on typed data, not raw strings.</text>
+
+  <line x1="512" y1="150" x2="512" y2="195" stroke="#666" stroke-width="1" stroke-dasharray="4" />
+  <path d="M512,195 L512,248 L390,248 L390,288" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)" fill="none" />
+  <text x="520" y="230" class="label">calls</text>
+
+  <!-- LAYER 3: PAGE OBJECTS -->
+  <rect x="16" y="430" width="748" height="170" rx="6" fill="#fafafa" stroke="#e5e7eb" stroke-width="1" />
+  <text x="32" y="450" class="tier-label">LAYER 3 — PAGE OBJECTS (UI Interaction)</text>
+
+  <rect x="32" y="462" width="120" height="56" rx="5" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
+  <text x="92" y="483" text-anchor="middle" class="box-title" fill="#7c3aed">LoginPage</text>
+  <text x="92" y="497" text-anchor="middle" class="box-sub">data-test locators</text>
+  <text x="92" y="510" text-anchor="middle" class="file-name">LoginPage.java</text>
+
+  <rect x="162" y="462" width="120" height="56" rx="5" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
+  <text x="222" y="483" text-anchor="middle" class="box-title" fill="#7c3aed">InventoryPage</text>
+  <text x="222" y="497" text-anchor="middle" class="box-sub">products, sort, cart</text>
+  <text x="222" y="510" text-anchor="middle" class="file-name">InventoryPage.java</text>
+
+  <rect x="292" y="462" width="100" height="56" rx="5" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
+  <text x="342" y="483" text-anchor="middle" class="box-title" fill="#7c3aed">CartPage</text>
+  <text x="342" y="497" text-anchor="middle" class="box-sub">checkout()</text>
+  <text x="342" y="510" text-anchor="middle" class="file-name">CartPage.java</text>
+
+  <rect x="402" y="462" width="120" height="56" rx="5" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
+  <text x="462" y="483" text-anchor="middle" class="box-title" fill="#7c3aed">CheckoutPages</text>
+  <text x="462" y="497" text-anchor="middle" class="box-sub">StepOne → Two → Done</text>
+  <text x="462" y="510" text-anchor="middle" class="file-name">Checkout*.java</text>
+
+  <rect x="532" y="462" width="110" height="56" rx="5" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
+  <text x="587" y="483" text-anchor="middle" class="box-title" fill="#7c3aed">NavigationMenu</text>
+  <text x="587" y="497" text-anchor="middle" class="box-sub">reset, logout</text>
+  <text x="587" y="510" text-anchor="middle" class="file-name">NavigationMenu.java</text>
+
+  <rect x="652" y="462" width="100" height="56" rx="5" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5" />
+  <text x="702" y="483" text-anchor="middle" class="box-title" fill="#7c3aed">BasePage</text>
+  <text x="702" y="497" text-anchor="middle" class="box-sub">abstract parent</text>
+  <text x="702" y="510" text-anchor="middle" class="file-name">BasePage.java</text>
+
+  <text x="32" y="543" class="box-sub">Each page owns its Playwright locators (data-test attributes). Returns typed data, never raw DOM elements.</text>
+  <text x="32" y="558" class="box-sub">Checkout pages chain: fillInfoAndContinue() → CheckoutStepTwoPage, finish() → CheckoutCompletePage</text>
+
+  <path d="M390,348 L390,368 L390,458" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)" fill="none" />
+  <text x="398" y="412" class="label">calls</text>
+
+  <!-- DTOs -->
+  <rect x="16" y="615" width="365" height="160" rx="6" fill="#fafafa" stroke="#e5e7eb" stroke-width="1" />
+  <text x="32" y="635" class="tier-label">DTOs (Data Objects)</text>
+
+  <rect x="32" y="647" width="105" height="44" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1" />
+  <text x="84" y="664" text-anchor="middle" class="box-title" font-size="11" fill="#2563eb">LoginCredentials</text>
+  <text x="84" y="678" text-anchor="middle" class="box-sub">user, pass</text>
+
+  <rect x="147" y="647" width="105" height="44" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1" />
+  <text x="199" y="664" text-anchor="middle" class="box-title" font-size="11" fill="#2563eb">CheckoutInfo</text>
+  <text x="199" y="678" text-anchor="middle" class="box-sub">name, zip</text>
+
+  <rect x="262" y="647" width="105" height="44" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1" />
+  <text x="314" y="664" text-anchor="middle" class="box-title" font-size="11" fill="#2563eb">LineItem</text>
+  <text x="314" y="678" text-anchor="middle" class="box-sub">name, BigDecimal</text>
+
+  <rect x="32" y="701" width="105" height="44" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1" />
+  <text x="84" y="718" text-anchor="middle" class="box-title" font-size="11" fill="#2563eb">ReceiptSummary</text>
+  <text x="84" y="732" text-anchor="middle" class="box-sub">items, tax, total</text>
+
+  <text x="147" y="725" class="box-sub">DTOs carry typed data between layers.</text>
+  <text x="147" y="740" class="box-sub">Steps assert on DTOs, not strings.</text>
+
+  <!-- Utilities -->
+  <rect x="399" y="615" width="365" height="160" rx="6" fill="#fafafa" stroke="#e5e7eb" stroke-width="1" />
+  <text x="415" y="635" class="tier-label">UTILITIES</text>
+
+  <rect x="415" y="647" width="120" height="44" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1" />
+  <text x="475" y="664" text-anchor="middle" class="box-title" font-size="11" fill="#ea580c">DriverManager</text>
+  <text x="475" y="678" text-anchor="middle" class="box-sub">ThreadLocal Playwright</text>
+
+  <rect x="545" y="647" width="120" height="44" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1" />
+  <text x="605" y="664" text-anchor="middle" class="box-title" font-size="11" fill="#ea580c">PdfReceiptParser</text>
+  <text x="605" y="678" text-anchor="middle" class="box-sub">PDFBox extraction</text>
+
+  <rect x="415" y="701" width="120" height="44" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1" />
+  <text x="475" y="718" text-anchor="middle" class="box-title" font-size="11" fill="#ea580c">ImageComparator</text>
+  <text x="475" y="732" text-anchor="middle" class="box-sub">pixel-diff visual</text>
+
+  <rect x="545" y="701" width="120" height="44" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1" />
+  <text x="605" y="718" text-anchor="middle" class="box-title" font-size="11" fill="#ea580c">ScreenshotUtil</text>
+  <text x="605" y="732" text-anchor="middle" class="box-sub">save PNGs to disk</text>
+
+  <!-- EXAMPLE FLOW -->
+  <rect x="16" y="795" width="748" height="110" rx="6" fill="#fafafa" stroke="#e5e7eb" stroke-width="1" />
+  <text x="32" y="815" class="tier-label">EXAMPLE FLOW: PDF Receipt Verification</text>
+
+  <rect x="32" y="828" width="90" height="36" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1" />
+  <text x="77" y="850" text-anchor="middle" font-size="10" font-weight="600" fill="#2563eb">Feature File</text>
+
+  <rect x="148" y="828" width="75" height="36" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1" />
+  <text x="185" y="850" text-anchor="middle" font-size="10" font-weight="600" fill="#2563eb">Steps</text>
+
+  <rect x="249" y="828" width="100" height="36" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1" />
+  <text x="299" y="850" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">CheckoutSvc</text>
+
+  <rect x="375" y="828" width="100" height="36" rx="4" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1" />
+  <text x="425" y="850" text-anchor="middle" font-size="10" font-weight="600" fill="#7c3aed">Pages (POM)</text>
+
+  <rect x="501" y="828" width="85" height="36" rx="4" fill="#fff7ed" stroke="#ea580c" stroke-width="1" />
+  <text x="543" y="850" text-anchor="middle" font-size="10" font-weight="600" fill="#ea580c">PdfParser</text>
+
+  <rect x="612" y="828" width="95" height="36" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1" />
+  <text x="659" y="844" text-anchor="middle" font-size="10" font-weight="600" fill="#2563eb">ReceiptSummary</text>
+  <text x="659" y="856" text-anchor="middle" font-size="9" fill="#666">(DTO)</text>
+
+  <line x1="122" y1="846" x2="144" y2="846" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)" />
+  <line x1="223" y1="846" x2="245" y2="846" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)" />
+  <line x1="349" y1="846" x2="371" y2="846" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)" />
+  <line x1="475" y1="846" x2="497" y2="846" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)" />
+  <line x1="586" y1="846" x2="608" y2="846" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)" />
+
+  <text x="32" y="885" class="box-sub">Step asserts: ReceiptSummary.total == expected $43.18, tax == $3.20, line items match, PDF total == on-screen total</text>
+</svg>
+</body>
+</html>
