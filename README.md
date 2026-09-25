@@ -46,6 +46,10 @@ plus `@positive`/`@negative`/`@smoke` - filterable via
 publicly documented on its own login page - nothing here is actually
 secret. Override any value per-run, e.g. `mvn test -Dheadless=false`.
 
+## Test Execution Report
+
+[View Cucumber Report with Screenshots](https://htmlpreview.github.io/?https://github.com/jgupta-git/saucedemo-qa-portfolio/blob/main/reports/overview-features.html)
+
 ## What's covered
 
 **`login_validation.feature`**
