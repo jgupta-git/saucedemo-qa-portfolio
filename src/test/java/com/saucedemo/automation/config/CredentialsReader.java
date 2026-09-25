@@ -9,9 +9,9 @@ import java.util.Properties;
 
 /**
  * Loads login credentials from saucedemo-credentials.properties on the
- * classpath, so no test data lives in source code or feature files. That
- * file is gitignored - see saucedemo-credentials.properties.example for
- * the template.
+ * classpath, so no test data lives in source code or feature files. The
+ * file is checked into the repo since SauceDemo's test credentials are
+ * publicly documented on its own login page - nothing here is secret.
  */
 public final class CredentialsReader {
 
@@ -21,8 +21,8 @@ public final class CredentialsReader {
         Properties props = new Properties();
         try (InputStream in = CredentialsReader.class.getClassLoader().getResourceAsStream(FILE_NAME)) {
             if (in == null) {
-                throw new IllegalStateException(FILE_NAME + " not found on the classpath. Copy "
-                        + FILE_NAME + ".example to " + FILE_NAME + " (same folder) and fill in real values.");
+                throw new IllegalStateException(FILE_NAME + " not found on the classpath. It should be "
+                        + "checked into src/test/resources/ - check the build actually pulled it in.");
             }
             props.load(in);
         } catch (IOException e) {

@@ -34,8 +34,8 @@ public final class TestConfig {
         Properties props = new Properties();
         try (InputStream in = TestConfig.class.getClassLoader().getResourceAsStream(FILE_NAME)) {
             if (in == null) {
-                throw new IllegalStateException(FILE_NAME + " not found on the classpath. Copy "
-                        + FILE_NAME + ".example to " + FILE_NAME + " (same folder) and fill in real values.");
+                throw new IllegalStateException(FILE_NAME + " not found on the classpath. It should be "
+                        + "checked into src/test/resources/ - check the build actually pulled it in.");
             }
             props.load(in);
         } catch (IOException e) {

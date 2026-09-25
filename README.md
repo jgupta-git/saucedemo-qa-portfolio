@@ -41,9 +41,10 @@ plus `@positive`/`@negative`/`@smoke` - filterable via
 
 ## Configuration
 
-`saucedemo-credentials.properties` (gitignored) holds login + `base.url` /
-`browser` / `headless`. Copy `.example` to get started; override any value
-per-run, e.g. `mvn test -Dheadless=false`.
+`saucedemo-credentials.properties` holds login + `base.url` / `browser` /
+`headless`. Checked into the repo since SauceDemo's test credentials are
+publicly documented on its own login page - nothing here is actually
+secret. Override any value per-run, e.g. `mvn test -Dheadless=false`.
 
 ## What's covered
 
