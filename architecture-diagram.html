@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SauceDemo Architecture</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #fff; color: #1a1a2e; padding: 32px 40px; max-width: 1100px; margin: 0 auto; }
+  h1 { text-align: center; font-size: 26px; margin-bottom: 28px; letter-spacing: 1px; }
+  .layer { margin-bottom: 28px; border: 2px solid #e0e0e0; border-radius: 10px; padding: 18px 20px 14px; position: relative; }
+  .layer-title { font-size: 15px; font-weight: 700; letter-spacing: 2px; color: #555; margin-bottom: 12px; }
+  .cards { display: flex; gap: 12px; flex-wrap: wrap; }
+  .card { border: 2px solid; border-radius: 8px; padding: 10px 14px; min-width: 140px; flex: 1; }
+  .card h3 { font-size: 14px; margin-bottom: 2px; }
+  .card p { font-size: 11.5px; color: #555; line-height: 1.35; }
+  .card code { font-size: 10.5px; color: #888; display: block; margin-top: 2px; }
+  .l1 .card { border-color: #e8d5f5; background: #faf5ff; }
+  .l2 .card { border-color: #b8e6d0; background: #f0faf5; }
+  .l3 .card { border-color: #ffd6a5; background: #fff8f0; }
+  .dto .card { border-color: #d0e0f0; background: #f5f9ff; }
+  .util .card { border-color: #ffd6d6; background: #fff5f5; }
+  .note { font-size: 11.5px; color: #666; margin-top: 10px; line-height: 1.5; }
+  .features-list { font-size: 11px; color: #888; font-family: 'Consolas', monospace; margin: 8px 0 4px; }
+  .arrow { text-align: center; font-size: 22px; color: #aaa; margin: 6px 0; }
+  .bottom-row { display: flex; gap: 24px; margin-bottom: 28px; }
+  .bottom-row > div { flex: 1; }
+  .section-title { font-size: 15px; font-weight: 700; letter-spacing: 2px; color: #555; margin-bottom: 10px; }
+  .flow { margin-bottom: 0; border: 2px solid #e0e0e0; border-radius: 10px; padding: 18px 20px 14px; }
+  .flow-title { font-size: 15px; font-weight: 700; letter-spacing: 2px; color: #555; margin-bottom: 12px; }
+  .flow-chain { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .flow-box { border: 2px solid #d0d0d0; border-radius: 6px; padding: 6px 14px; font-size: 12px; font-weight: 600; background: #f8f8f8; }
+  .flow-box.dto { background: #f5f9ff; border-color: #d0e0f0; }
+  .flow-arrow { font-size: 18px; color: #aaa; }
+</style>
+</head>
+<body>
+
+<h1>SauceDemo 3-Layer Architecture</h1>
+
+<div class="layer l1">
+  <div class="layer-title">LAYER 1 &mdash; BDD / CUCUMBER</div>
+  <div class="cards">
+    <div class="card">
+      <h3>Feature Files</h3>
+      <p>.feature (Gherkin)<br>6 features, 20 scenarios<br>Tags: @smoke @functional</p>
+    </div>
+    <div class="card">
+      <h3>Runners</h3>
+      <p>*Runner.java<br>@RunWith(Cucumber)<br>JUnit4, per-feature</p>
+    </div>
+    <div class="card">
+      <h3>Step Definitions</h3>
+      <p>*Steps.java<br>@Given @When @Then<br>Thin &mdash; delegates to services</p>
+    </div>
+    <div class="card">
+      <h3>Hooks</h3>
+      <p>Hooks.java<br>@Before @After<br>Sets ScreenshotHelper scenario</p>
+    </div>
+  </div>
+  <div class="features-list">login_validation &nbsp; order_pdf_receipt &nbsp; product_sort<br>product_image_integrity &nbsp; session_management &nbsp; visual_regression</div>
+  <div style="position: absolute; right: 20px; top: 80px;">
+    <div class="card" style="border-color: #e8d5f5; background: #faf5ff; min-width: auto;">
+      <h3>Config</h3>
+      <p>.properties</p>
+    </div>
+  </div>
+</div>
+
+<div class="arrow">&#9660; calls</div>
+
+<div class="layer l2">
+  <div class="layer-title">LAYER 2 &mdash; SERVICES (Business Logic)</div>
+  <div class="cards">
+    <div class="card">
+      <h3>LoginService</h3>
+      <p>login, error checks</p>
+      <code>LoginService.java</code>
+    </div>
+    <div class="card">
+      <h3>CheckoutService</h3>
+      <p>cart &rarr; checkout &rarr; PDF</p>
+      <code>CheckoutService.java</code>
+    </div>
+    <div class="card">
+      <h3>ProductCatalogService</h3>
+      <p>sort, prices, images</p>
+      <code>ProductCatalogService.java</code>
+    </div>
+    <div class="card">
+      <h3>SessionService</h3>
+      <p>reset, logout, back</p>
+      <code>SessionService.java</code>
+    </div>
+  </div>
+  <div class="note">Services orchestrate page objects &mdash; no Playwright calls, no assertions. Steps call services; services call pages.<br>Returns DTOs (ReceiptSummary, LineItem) so steps can assert on typed data, not raw strings.</div>
+</div>
+
+<div class="arrow">&#9660; calls</div>
+
+<div class="layer l3">
+  <div class="layer-title">LAYER 3 &mdash; PAGE OBJECTS (UI Interaction)</div>
+  <div class="cards">
+    <div class="card">
+      <h3>LoginPage</h3>
+      <p>data-test locators</p>
+      <code>LoginPage.java</code>
+    </div>
+    <div class="card">
+      <h3>InventoryPage</h3>
+      <p>products, sort, cart</p>
+      <code>InventoryPage.java</code>
+    </div>
+    <div class="card">
+      <h3>CartPage</h3>
+      <p>checkout()</p>
+      <code>CartPage.java</code>
+    </div>
+    <div class="card">
+      <h3>CheckoutPages</h3>
+      <p>StepOne &rarr; Two &rarr; Done</p>
+      <code>Checkout*.java</code>
+    </div>
+    <div class="card">
+      <h3>NavigationMenu</h3>
+      <p>reset, logout</p>
+      <code>NavigationMenu.java</code>
+    </div>
+    <div class="card">
+      <h3>BasePage</h3>
+      <p>abstract parent</p>
+      <code>BasePage.java</code>
+    </div>
+  </div>
+  <div class="note">Each page owns its Playwright locators (data-test attributes). Returns typed data, never raw DOM elements.<br>Checkout pages chain: fillInfoAndContinue() &rarr; CheckoutStepTwoPage, finish() &rarr; CheckoutCompletePage</div>
+</div>
+
+<br>
+
+<div class="bottom-row">
+  <div>
+    <div class="section-title">DTOs (Data Objects)</div>
+    <div class="cards dto">
+      <div class="card">
+        <h3>LoginCredentials</h3>
+        <p>user, pass</p>
+      </div>
+      <div class="card">
+        <h3>CheckoutInfo</h3>
+        <p>name, zip</p>
+      </div>
+      <div class="card">
+        <h3>LineItem</h3>
+        <p>name, BigDecimal</p>
+      </div>
+    </div>
+    <div class="cards dto" style="margin-top: 10px;">
+      <div class="card">
+        <h3>ReceiptSummary</h3>
+        <p>items, tax, total</p>
+      </div>
+      <div class="card" style="border: none; background: none;">
+        <p style="font-size: 11.5px; color: #666;">DTOs carry typed data between layers.<br>Steps assert on DTOs, not strings.</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="section-title">UTILITIES</div>
+    <div class="cards util">
+      <div class="card">
+        <h3>DriverManager</h3>
+        <p>ThreadLocal Playwright</p>
+      </div>
+      <div class="card">
+        <h3>PdfReceiptParser</h3>
+        <p>PDFBox extraction</p>
+      </div>
+    </div>
+    <div class="cards util" style="margin-top: 10px;">
+      <div class="card">
+        <h3>ImageComparator</h3>
+        <p>pixel-diff visual</p>
+      </div>
+      <div class="card">
+        <h3>ScreenshotHelper</h3>
+        <p>on-demand capture,<br>embed in Cucumber reports</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow">
+  <div class="flow-title">EXAMPLE FLOW: PDF Receipt Verification</div>
+  <div class="flow-chain">
+    <div class="flow-box">Feature File</div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box">Steps</div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box">CheckoutSvc</div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box">Pages (POM)</div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box">PdfParser</div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box dto">ReceiptSummary<br><span style="font-size:10px;color:#888;">(DTO)</span></div>
+  </div>
+  <div class="note">Step asserts: ReceiptSummary.total == expected $43.18, tax == $3.20, line items match, PDF total == on-screen total</div>
+</div>
+
+</body>
+</html>
