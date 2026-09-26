@@ -47,7 +47,7 @@ secret. Override any value per-run, e.g. `mvn test -Dheadless=false`.
 
 ## Test Execution Report
 
-[View Cucumber Report with Screenshots](https://htmlpreview.github.io/?https://raw.githubusercontent.com/jgupta-git/saucedemo-qa-portfolio/main/reports/report-feature_1_3939167693.html)
+[View Cucumber Report with Screenshots](https://htmlpreview.github.io/?https://github.com/jgupta-git/saucedemo-qa-portfolio/blob/main/reports/overview-features.html)
 
 ## What's covered
 
