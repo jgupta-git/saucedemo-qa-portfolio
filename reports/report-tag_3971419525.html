@@ -76,7 +76,7 @@ $(document).ready(function() {
     <tr class="info">
       <td>SauceDemo QA Automation</td>
         <td>1</td>
-      <td>25 Sep 2026, 10:36</td>
+      <td>25 Sep 2026, 20:00</td>
     </tr>
   </tbody>
 </table>
@@ -129,18 +129,18 @@ $(document).ready(function() {
         <tbody>
         <tr>
           <td class="tagname">@checkout</td>
-          <td      class="passed"    >7</td>
+          <td      class="passed"    >13</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">7</td>
+          <td class="total">13</td>
 
-          <td  class="passed"    >2</td>
+          <td  class="passed"    >1</td>
           <td >0</td>
-          <td class="total">2</td>
+          <td class="total">1</td>
 
-          <td class="duration" data-value="1260599300">1.260</td>
+          <td class="duration" data-value="4466909600">4.466</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -186,14 +186,14 @@ $(document).ready(function() {
 </div>
 
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">4.466</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
-  <span class="name">The on-screen checkout total matches the expected price</span>
+  <span class="name">The on-screen and PDF receipt totals match the expected price</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -222,9 +222,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">Before</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.setUp()</span>
+              <span class="location name">com.saucedemo.automation.hooks.Hooks.setUp(io.cucumber.java.Scenario)</span>
 
-  <span class="lead-duration duration">0.739</span>
+  <span class="lead-duration duration">1.108</span>
 
           </div>
 
@@ -257,11 +257,11 @@ $(document).ready(function() {
       <div class="step">
 
 
-<div class="brief step-name-Then passed">
-  <span class="keyword indention">Then</span>
-  <span class="name">the on-screen order summary should show item total <span class="argument">&quot;39.98&quot;</span>, tax <span class="argument">&quot;3.20&quot;</span>, and total <span class="argument">&quot;43.18&quot;</span></span>
+<div class="brief step-name-Given passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">I am on the SauceDemo login page</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.615</span>
 
 </div>
 
@@ -276,31 +276,42 @@ $(document).ready(function() {
 
 
 
-
-
-
-  <div class="inner-level hooks-step-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-4">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
+  <div class="embeddings inner-level">
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-4" class="collapsable-control">
+      <a>Login Page</a>
+      <a href="embeddings/embedding_183223735.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
     </div>
+    <div id="embedding-4" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_183223735.png">
+      </div>
+    </div>
+  </div>
+  </div>
 
-    <div id="after-4" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.captureStepScreenshot(io.cucumber.java.Scenario)</span>
 
-  <span class="lead-duration duration">0.051</span>
 
-          </div>
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I log in with username <span class="argument">&quot;standard_user&quot;</span> using the universal password</span>
+
+  <span class="lead-duration duration">0.191</span>
+
+</div>
+
+
+
+
+
+
 
 
 
@@ -310,22 +321,212 @@ $(document).ready(function() {
   <div class="embeddings inner-level">
   <div class="embedding indention">
     <div data-toggle="collapse" data-target="#embedding-5" class="collapsable-control">
-      <a>step-5</a>
-      <a href="embeddings/embedding_1973563778.png" download target="_blank">
+      <a>Username and password entered</a>
+      <a href="embeddings/embedding_-682696623.png" download target="_blank">
         <span class="download-button glyphicon glyphicon-download-alt"></span>
       </a>
     </div>
     <div id="embedding-5" class="collapse collapsable-details ">
       <div class="embedding-content">
-        <img src="embeddings/embedding_1973563778.png">
+        <img src="embeddings/embedding_-682696623.png">
       </div>
     </div>
   </div>
   </div>
 
-        </div>
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When passed">
+  <span class="keyword indention">When</span>
+  <span class="name">I add <span class="argument">&quot;Sauce Labs Backpack&quot;</span> and <span class="argument">&quot;Sauce Labs Bike Light&quot;</span> to my cart</span>
+
+  <span class="lead-duration duration">0.514</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="embeddings inner-level">
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-6" class="collapsable-control">
+      <a>add to cart</a>
+      <a href="embeddings/embedding_-827371135.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-6" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_-827371135.png">
+      </div>
     </div>
   </div>
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-7" class="collapsable-control">
+      <a>add to cart</a>
+      <a href="embeddings/embedding_-1363353109.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-7" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_-1363353109.png">
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I click on the cart</span>
+
+  <span class="lead-duration duration">0.114</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="embeddings inner-level">
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-8" class="collapsable-control">
+      <a>Cart page</a>
+      <a href="embeddings/embedding_-1910076038.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-8" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_-1910076038.png">
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">I complete checkout with valid information</span>
+
+  <span class="lead-duration duration">0.421</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="embeddings inner-level">
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-9" class="collapsable-control">
+      <a>Checkout - your information</a>
+      <a href="embeddings/embedding_1323877244.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-9" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_1323877244.png">
+      </div>
+    </div>
+  </div>
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-10" class="collapsable-control">
+      <a>Checkout - order summary</a>
+      <a href="embeddings/embedding_-1042958363.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-10" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_-1042958363.png">
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">the on-screen order summary should show item total <span class="argument">&quot;39.98&quot;</span>, tax <span class="argument">&quot;3.20&quot;</span>, and total <span class="argument">&quot;43.18&quot;</span></span>
+
+  <span class="lead-duration duration">0.023</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="outputs inner-level">
+      <div class="output indention">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#output-11">
+          Output 1
+          <i class="chevron fa fa-fw"></i>
+        </div>
+        <div id="output-11" class="collapse collapsable-details " >
+          
+          <pre><p>Expected: ItemTotal=$39.98 Tax=$3.20 Total=$43.18 | Actual: ItemTotal=$39.98 Tax=$3.20 Total=$43.18</p></pre>
+        </div>
+      </div>
+  </div>
+
+
+
+
 
       </div>
       <div class="step">
@@ -335,7 +536,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">the on-screen order total should equal item total plus tax</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.005</span>
 
 </div>
 
@@ -349,194 +550,32 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-  <div class="inner-level hooks-step-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-6">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-6" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.captureStepScreenshot(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.048</span>
-
-          </div>
-
-
-
-
-
-
-  <div class="embeddings inner-level">
-  <div class="embedding indention">
-    <div data-toggle="collapse" data-target="#embedding-7" class="collapsable-control">
-      <a>step-6</a>
-      <a href="embeddings/embedding_1973563778.png" download target="_blank">
-        <span class="download-button glyphicon glyphicon-download-alt"></span>
-      </a>
-    </div>
-    <div id="embedding-7" class="collapse collapsable-details ">
-      <div class="embedding-content">
-        <img src="embeddings/embedding_1973563778.png">
-      </div>
-    </div>
-  </div>
-  </div>
-
+  <div class="outputs inner-level">
+      <div class="output indention">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#output-12">
+          Output 1
+          <i class="chevron fa fa-fw"></i>
         </div>
-    </div>
-  </div>
-
+        <div id="output-12" class="collapse collapsable-details " >
+          
+          <pre><p>$39.98 + $3.20 = $43.18 | On-Screen Total=$43.18 =&gt; MATCH</p></pre>
+        </div>
       </div>
   </div>
-</div>
-
-
-
-
-  <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-8">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-8" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.tearDown()</span>
-
-  <span class="lead-duration duration">0.102</span>
-
-          </div>
 
 
 
 
 
-
-
-        </div>
-    </div>
-  </div>
-
-  </div>
-</div>
-
-
-<div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_1_3939167693.html">PDF order receipt</a>
-    </div>
-
-
-<div class="tags indention">
-    <b>Tags:</b>
-       <a href="report-tag_3971419525.html">@checkout</a>
-       <a href="report-tag_3043924546.html">@functional</a>
-       <a href="report-tag_2788516244.html">@Scenario-2</a>
-       <a href="report-tag_3182320184.html">@positive</a>
-</div>
-
-
-  <span class="lead-duration duration">1.260</span>
-
-
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-9">
-
-<div class="brief passed">
-  <span class="keyword indention">Scenario Outline</span>
-  <span class="name">The downloaded PDF receipt matches the expected price and the order</span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </span>
-  <div class="description indention"></div>
-
-  <div id="element-9" class="collapse collapsable-details ">
-
-
-  <div class="inner-level hooks-element-before">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-10">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="before-10" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">Before</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.setUp()</span>
-
-  <span class="lead-duration duration">0.746</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-    </div>
-  </div>
-
-
-
-<div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-11">
-
-<div class="brief passed">
-  <span class="keyword indention">Steps</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </div>
-
-  <div id="steps-11" class="inner-level collapse collapsable-details ">
+      </div>
       <div class="step">
 
 
-<div class="brief step-name-When passed">
-  <span class="keyword indention">When</span>
-  <span class="name">I download the PDF order receipt</span>
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">the order should complete successfully</span>
 
-  <span class="lead-duration duration">1.247</span>
+  <span class="lead-duration duration">0.264</span>
 
 </div>
 
@@ -545,37 +584,6 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-  <div class="inner-level hooks-step-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-12">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-12" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.captureStepScreenshot(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.035</span>
-
-          </div>
 
 
 
@@ -585,22 +593,87 @@ $(document).ready(function() {
   <div class="embeddings inner-level">
   <div class="embedding indention">
     <div data-toggle="collapse" data-target="#embedding-13" class="collapsable-control">
-      <a>step-5</a>
-      <a href="embeddings/embedding_1551605062.png" download target="_blank">
+      <a>Checkout complete</a>
+      <a href="embeddings/embedding_1746347881.png" download target="_blank">
         <span class="download-button glyphicon glyphicon-download-alt"></span>
       </a>
     </div>
     <div id="embedding-13" class="collapse collapsable-details ">
       <div class="embedding-content">
-        <img src="embeddings/embedding_1551605062.png">
+        <img src="embeddings/embedding_1746347881.png">
+      </div>
+    </div>
+  </div>
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-14" class="collapsable-control">
+      <a>order completed</a>
+      <a href="embeddings/embedding_-2047944207.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-14" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_-2047944207.png">
       </div>
     </div>
   </div>
   </div>
 
-        </div>
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-When passed">
+  <span class="keyword indention">When</span>
+  <span class="name">I download the PDF order receipt</span>
+
+  <span class="lead-duration duration">2.315</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="embeddings inner-level">
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-15" class="collapsable-control">
+      <a>Checkout complete - before PDF parse</a>
+      <a href="embeddings/embedding_-2047944207.png" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-15" class="collapse collapsable-details ">
+      <div class="embedding-content">
+        <img src="embeddings/embedding_-2047944207.png">
+      </div>
     </div>
   </div>
+  <div class="embedding indention">
+    <div data-toggle="collapse" data-target="#embedding-16" class="collapsable-control">
+      <a>Downloaded receipt PDF</a>
+      <a href="embeddings/embedding_-1261829808.pdf" download target="_blank">
+        <span class="download-button glyphicon glyphicon-download-alt"></span>
+      </a>
+    </div>
+    <div id="embedding-16" class="collapse collapsable-details ">
+        <pre class="embedding-content">This file cannot be displayed. Use download button to get the content as file.</pre>
+    </div>
+  </div>
+  </div>
+
+
+
 
       </div>
       <div class="step">
@@ -628,53 +701,6 @@ $(document).ready(function() {
 
 
 
-  <div class="inner-level hooks-step-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-14">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-14" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.captureStepScreenshot(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.034</span>
-
-          </div>
-
-
-
-
-
-
-  <div class="embeddings inner-level">
-  <div class="embedding indention">
-    <div data-toggle="collapse" data-target="#embedding-15" class="collapsable-control">
-      <a>step-6</a>
-      <a href="embeddings/embedding_1551605062.png" download target="_blank">
-        <span class="download-button glyphicon glyphicon-download-alt"></span>
-      </a>
-    </div>
-    <div id="embedding-15" class="collapse collapsable-details ">
-      <div class="embedding-content">
-        <img src="embeddings/embedding_1551605062.png">
-      </div>
-    </div>
-  </div>
-  </div>
-
-        </div>
-    </div>
-  </div>
 
       </div>
       <div class="step">
@@ -698,57 +724,22 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-  <div class="inner-level hooks-step-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-16">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-16" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.captureStepScreenshot(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.036</span>
-
-          </div>
-
-
-
-
-
-
-  <div class="embeddings inner-level">
-  <div class="embedding indention">
-    <div data-toggle="collapse" data-target="#embedding-17" class="collapsable-control">
-      <a>step-7</a>
-      <a href="embeddings/embedding_1551605062.png" download target="_blank">
-        <span class="download-button glyphicon glyphicon-download-alt"></span>
-      </a>
-    </div>
-    <div id="embedding-17" class="collapse collapsable-details ">
-      <div class="embedding-content">
-        <img src="embeddings/embedding_1551605062.png">
-      </div>
-    </div>
-  </div>
-  </div>
-
+  <div class="outputs inner-level">
+      <div class="output indention">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#output-17">
+          Output 1
+          <i class="chevron fa fa-fw"></i>
         </div>
-    </div>
+        <div id="output-17" class="collapse collapsable-details " >
+          
+          <pre><p>On-Screen: ItemTotal=$39.98 Tax=$3.20 Total=$43.18 | PDF: ItemTotal=$39.98 Tax=$3.20 Total=$43.18</p></pre>
+        </div>
+      </div>
   </div>
+
+
+
+
 
       </div>
       <div class="step">
@@ -772,57 +763,22 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-  <div class="inner-level hooks-step-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-18">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-18" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.captureStepScreenshot(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.059</span>
-
-          </div>
-
-
-
-
-
-
-  <div class="embeddings inner-level">
-  <div class="embedding indention">
-    <div data-toggle="collapse" data-target="#embedding-19" class="collapsable-control">
-      <a>step-8</a>
-      <a href="embeddings/embedding_1551605062.png" download target="_blank">
-        <span class="download-button glyphicon glyphicon-download-alt"></span>
-      </a>
-    </div>
-    <div id="embedding-19" class="collapse collapsable-details ">
-      <div class="embedding-content">
-        <img src="embeddings/embedding_1551605062.png">
-      </div>
-    </div>
-  </div>
-  </div>
-
+  <div class="outputs inner-level">
+      <div class="output indention">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#output-18">
+          Output 1
+          <i class="chevron fa fa-fw"></i>
         </div>
-    </div>
+        <div id="output-18" class="collapse collapsable-details " >
+          
+          <pre><p>$39.98 + $3.20 = $43.18 | PDF Total=$43.18 =&gt; MATCH</p></pre>
+        </div>
+      </div>
   </div>
+
+
+
+
 
       </div>
       <div class="step">
@@ -832,7 +788,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">the PDF receipt's line items should match what was in the cart</span>
 
-  <span class="lead-duration duration">0.012</span>
+  <span class="lead-duration duration">0.000</span>
 
 </div>
 
@@ -846,11 +802,31 @@ $(document).ready(function() {
 
 
 
+  <div class="outputs inner-level">
+      <div class="output indention">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#output-19">
+          Output 1
+          <i class="chevron fa fa-fw"></i>
+        </div>
+        <div id="output-19" class="collapse collapsable-details " >
+          
+          <pre><p>Cart: [Sauce Labs Backpack, Sauce Labs Bike Light] | PDF: [Sauce Labs Backpack, Sauce Labs Bike Light]</p></pre>
+        </div>
+      </div>
+  </div>
 
 
 
 
-  <div class="inner-level hooks-step-after">
+
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div class="inner-level hooks-element-after">
     <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-20">
 
 <div class="brief passed">
@@ -867,64 +843,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">com.saucedemo.automation.hooks.Hooks.captureStepScreenshot(io.cucumber.java.Scenario)</span>
-
-  <span class="lead-duration duration">0.055</span>
-
-          </div>
-
-
-
-
-
-
-  <div class="embeddings inner-level">
-  <div class="embedding indention">
-    <div data-toggle="collapse" data-target="#embedding-21" class="collapsable-control">
-      <a>step-9</a>
-      <a href="embeddings/embedding_1551605062.png" download target="_blank">
-        <span class="download-button glyphicon glyphicon-download-alt"></span>
-      </a>
-    </div>
-    <div id="embedding-21" class="collapse collapsable-details ">
-      <div class="embedding-content">
-        <img src="embeddings/embedding_1551605062.png">
-      </div>
-    </div>
-  </div>
-  </div>
-
-        </div>
-    </div>
-  </div>
-
-      </div>
-  </div>
-</div>
-
-
-
-
-  <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-22">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-22" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
               <span class="location name">com.saucedemo.automation.hooks.Hooks.tearDown()</span>
 
-  <span class="lead-duration duration">0.142</span>
+  <span class="lead-duration duration">0.513</span>
 
           </div>
 
