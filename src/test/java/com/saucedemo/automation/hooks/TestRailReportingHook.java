@@ -1,6 +1,5 @@
 package com.saucedemo.automation.hooks;
 
-import com.saucedemo.automation.util.ScreenshotHelper;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import java.net.http.HttpClient;
