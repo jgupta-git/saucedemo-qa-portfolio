@@ -12,42 +12,69 @@ import java.util.regex.Pattern;
 
 /**
  * Hooks to post test results to TestRail after each scenario.
- * Reads the @Cxx tag (e.g. @C1, @C2) and posts PASS/FAIL status + screenshot.
+ * Reads the @Cxx tag (e.g. @C1, @C2) and posts PASS/FAIL status.
  *
- * Environment variables:
+ * Configuration (system properties via Maven -D flags OR environment variables):
  *   TESTRAIL_URL = https://your-domain.testrail.io (no trailing slash)
  *   TESTRAIL_USER = your@email.com
  *   TESTRAIL_API_KEY = your-api-key (get from TestRail account settings)
  *   TESTRAIL_PROJECT_ID = 1 (the numeric ID of your SauceDemo project in TestRail)
  *   TESTRAIL_ENABLED = true (set to false to disable posting, e.g. after trial ends)
+ *
+ * Jenkins Usage:
+ *   Maven Goals: clean verify -P saucedemo \
+ *     -DTESTRAIL_URL="${TESTRAIL_URL}" \
+ *     -DTESTRAIL_USER="${TESTRAIL_USER}" \
+ *     -DTESTRAIL_PROJECT_ID="${TESTRAIL_PROJECT_ID}" \
+ *     -DTESTRAIL_ENABLED="${TESTRAIL_ENABLED}"
+ *   Build Environment: Bind TESTRAIL_API_KEY from Jenkins Credentials
  */
 public class TestRailReportingHook {
 
-	private static final String TESTRAIL_URL = getConfigValue("TESTRAIL_URL", null);
-	private static final String TESTRAIL_USER = getConfigValue("TESTRAIL_USER", null);
-	private static final String TESTRAIL_API_KEY = getConfigValue("TESTRAIL_API_KEY", null);
-	private static final String TESTRAIL_PROJECT_ID = getConfigValue("TESTRAIL_PROJECT_ID", "1");
-	private static final boolean TESTRAIL_ENABLED = !"false".equalsIgnoreCase(getConfigValue("TESTRAIL_ENABLED", "true"));
-	
-	
-	private static String getConfigValue(String key, String defaultValue) {
-	        String systemValue = System.getProperty(key);
-	        if (systemValue != null) {
-	            return systemValue;
-	        }
-	        String envValue = System.getenv(key);
-	        if (envValue != null) {
-	            return envValue;
-	        }
-	        return defaultValue;
-	    }
-	
-	private static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
+    private static final String TESTRAIL_URL = getConfigValue("TESTRAIL_URL", null);
+    private static final String TESTRAIL_USER = getConfigValue("TESTRAIL_USER", null);
+    private static final String TESTRAIL_API_KEY = getConfigValue("TESTRAIL_API_KEY", null);
+    private static final String TESTRAIL_PROJECT_ID = getConfigValue("TESTRAIL_PROJECT_ID", "1");
+    private static final boolean TESTRAIL_ENABLED = !"false".equalsIgnoreCase(getConfigValue("TESTRAIL_ENABLED", "true"));
+
+    /**
+     * Get configuration value from system properties (Maven -D flags) or environment variables.
+     * System properties take precedence over environment variables.
+     */
+    private static String getConfigValue(String key, String defaultValue) {
+        String systemValue = System.getProperty(key);
+        if (systemValue != null) {
+            return systemValue;
+        }
+        String envValue = System.getenv(key);
+        if (envValue != null) {
+            return envValue;
+        }
+        return defaultValue;
+    }
+
+    private static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
 
     @After
     public void reportToTestRail(Scenario scenario) {
-        if (!TESTRAIL_ENABLED || TESTRAIL_URL == null || TESTRAIL_API_KEY == null) {
-            return; // TestRail reporting disabled or not configured
+        // Debug logging
+        System.out.println("[TestRail Debug] TESTRAIL_ENABLED=" + TESTRAIL_ENABLED);
+        System.out.println("[TestRail Debug] TESTRAIL_URL=" + TESTRAIL_URL);
+        System.out.println("[TestRail Debug] TESTRAIL_USER=" + TESTRAIL_USER);
+        System.out.println("[TestRail Debug] TESTRAIL_API_KEY=" + (TESTRAIL_API_KEY != null ? "SET" : "NULL"));
+        System.out.println("[TestRail Debug] TESTRAIL_PROJECT_ID=" + TESTRAIL_PROJECT_ID);
+
+        if (!TESTRAIL_ENABLED) {
+            System.out.println("[TestRail Debug] SKIPPED: TESTRAIL_ENABLED is false");
+            return;
+        }
+        if (TESTRAIL_URL == null) {
+            System.out.println("[TestRail Debug] SKIPPED: TESTRAIL_URL is null");
+            return;
+        }
+        if (TESTRAIL_API_KEY == null) {
+            System.out.println("[TestRail Debug] SKIPPED: TESTRAIL_API_KEY is null");
+            return;
         }
 
         // Extract @Cxx tag from scenario (e.g. @C1, @C5, @C13)
@@ -60,6 +87,7 @@ public class TestRailReportingHook {
         // Determine status: 1 = passed, 5 = failed
         int statusId = scenario.isFailed() ? 5 : 1;
         String comment = scenario.isFailed() ? "Test failed" : "Test passed";
+
         // Post the result
         postTestResult(caseId, statusId, comment, scenario);
     }
