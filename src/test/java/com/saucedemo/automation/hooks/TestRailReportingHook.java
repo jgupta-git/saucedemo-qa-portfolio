@@ -23,13 +23,26 @@ import java.util.regex.Pattern;
  */
 public class TestRailReportingHook {
 
-    private static final String TESTRAIL_URL = System.getenv("TESTRAIL_URL");
-    private static final String TESTRAIL_USER = System.getenv("TESTRAIL_USER");
-    private static final String TESTRAIL_API_KEY = System.getenv("TESTRAIL_API_KEY");
-    private static final String TESTRAIL_PROJECT_ID = System.getenv().getOrDefault("TESTRAIL_PROJECT_ID", "1");
-    private static final boolean TESTRAIL_ENABLED = !"false".equalsIgnoreCase(System.getenv().getOrDefault("TESTRAIL_ENABLED", "true"));
-
-    private static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
+	private static final String TESTRAIL_URL = getConfigValue("TESTRAIL_URL", null);
+	private static final String TESTRAIL_USER = getConfigValue("TESTRAIL_USER", null);
+	private static final String TESTRAIL_API_KEY = getConfigValue("TESTRAIL_API_KEY", null);
+	private static final String TESTRAIL_PROJECT_ID = getConfigValue("TESTRAIL_PROJECT_ID", "1");
+	private static final boolean TESTRAIL_ENABLED = !"false".equalsIgnoreCase(getConfigValue("TESTRAIL_ENABLED", "true"));
+	
+	
+	private static String getConfigValue(String key, String defaultValue) {
+	        String systemValue = System.getProperty(key);
+	        if (systemValue != null) {
+	            return systemValue;
+	        }
+	        String envValue = System.getenv(key);
+	        if (envValue != null) {
+	            return envValue;
+	        }
+	        return defaultValue;
+	    }
+	
+	private static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
 
     @After
     public void reportToTestRail(Scenario scenario) {
