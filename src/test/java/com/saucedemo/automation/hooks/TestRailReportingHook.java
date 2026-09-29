@@ -47,10 +47,7 @@ public class TestRailReportingHook {
 
         // Determine status: 1 = passed, 5 = failed
         int statusId = scenario.isFailed() ? 5 : 1;
-        String comment = scenario.isFailed()
-            ? "Test failed: " + scenario.getError().getMessage()
-            : "Test passed";
-
+        String comment = scenario.isFailed() ? "Test failed" : "Test passed";
         // Post the result
         postTestResult(caseId, statusId, comment, scenario);
     }
