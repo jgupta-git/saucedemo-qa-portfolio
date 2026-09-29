@@ -18,15 +18,17 @@ import java.util.regex.Pattern;
  *   TESTRAIL_URL = https://your-domain.testrail.io (no trailing slash)
  *   TESTRAIL_USER = your@email.com
  *   TESTRAIL_API_KEY = your-api-key (get from TestRail account settings)
- *   TESTRAIL_PROJECT_ID = 1 (the numeric ID of your SauceDemo project in TestRail)
- *   TESTRAIL_RUN_ID = 1 (the numeric ID of your active test run in TestRail)
+ *   TESTRAIL_RUN_ID = 3 (the numeric ID of your active test run in TestRail)
  *   TESTRAIL_ENABLED = true (set to false to disable posting, e.g. after trial ends)
+ *
+ * TestRail API Reference:
+ *   POST /index.php?/api/v2/add_result_for_case/{run_id}/{case_id}
+ *   https://support.testrail.com/hc/en-us/articles/15758390538260
  *
  * Jenkins Usage:
  *   Maven Goals: clean verify -P saucedemo \
  *     -DTESTRAIL_URL="${TESTRAIL_URL}" \
  *     -DTESTRAIL_USER="${TESTRAIL_USER}" \
- *     -DTESTRAIL_PROJECT_ID="${TESTRAIL_PROJECT_ID}" \
  *     -DTESTRAIL_RUN_ID="${TESTRAIL_RUN_ID}" \
  *     -DTESTRAIL_ENABLED="${TESTRAIL_ENABLED}"
  *   Build Environment: Bind TESTRAIL_API_KEY from Jenkins Credentials
@@ -36,7 +38,6 @@ public class TestRailReportingHook {
     private static final String TESTRAIL_URL = getConfigValue("TESTRAIL_URL", null);
     private static final String TESTRAIL_USER = getConfigValue("TESTRAIL_USER", null);
     private static final String TESTRAIL_API_KEY = getConfigValue("TESTRAIL_API_KEY", null);
-    private static final String TESTRAIL_PROJECT_ID = getConfigValue("TESTRAIL_PROJECT_ID", "1");
     private static final String TESTRAIL_RUN_ID = getConfigValue("TESTRAIL_RUN_ID", null);
     private static final boolean TESTRAIL_ENABLED = !"false".equalsIgnoreCase(getConfigValue("TESTRAIL_ENABLED", "true"));
 
@@ -65,7 +66,6 @@ public class TestRailReportingHook {
         System.out.println("[TestRail Debug] TESTRAIL_URL=" + TESTRAIL_URL);
         System.out.println("[TestRail Debug] TESTRAIL_USER=" + TESTRAIL_USER);
         System.out.println("[TestRail Debug] TESTRAIL_API_KEY=" + (TESTRAIL_API_KEY != null ? "SET" : "NULL"));
-        System.out.println("[TestRail Debug] TESTRAIL_PROJECT_ID=" + TESTRAIL_PROJECT_ID);
         System.out.println("[TestRail Debug] TESTRAIL_RUN_ID=" + TESTRAIL_RUN_ID);
 
         if (!TESTRAIL_ENABLED) {
@@ -101,7 +101,7 @@ public class TestRailReportingHook {
     }
 
     /**
-     * Extract the @Cxx tag (e.g. @C1, @C12) from scenario tags.
+     * Extract the numeric case ID from @Cxx tag (e.g. @C2 -> "2", @C13 -> "13").
      */
     private String extractCaseId(Scenario scenario) {
         Pattern pattern = Pattern.compile("@C(\\d+)");
@@ -116,19 +116,25 @@ public class TestRailReportingHook {
 
     /**
      * POST to TestRail API: add_result_for_case
-     * https://docs.testrail.com/reference/add-result-for-case
+     * Endpoint: POST /index.php?/api/v2/add_result_for_case/{run_id}/{case_id}
+     *
+     * NOTE: This endpoint takes only run_id and case_id — NOT project_id.
      */
     private void postTestResult(String caseId, int statusId, String comment, Scenario scenario) {
         try {
             // Construct TestRail API endpoint
+            // Correct format: /api/v2/add_result_for_case/{run_id}/{case_id}
             String apiUrl = String.format(
-                "%s/index.php?/api/v2/add_result/%s/%s",
+                "%s/index.php?/api/v2/add_result_for_case/%s/%s",
                 TESTRAIL_URL,
                 TESTRAIL_RUN_ID,
                 caseId
             );
 
-            // Build JSON body (include status_id and comment)
+            // Log the URL for debugging
+            System.out.println("[TestRail Debug] POST " + apiUrl);
+
+            // Build JSON body
             String jsonBody = String.format(
                 "{\"status_id\": %d, \"comment\": \"%s\"}",
                 statusId,
