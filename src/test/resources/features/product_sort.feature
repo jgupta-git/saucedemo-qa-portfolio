@@ -4,7 +4,7 @@ Feature: Product catalog sorting
   I want sorting to actually reorder the product list
   So that a broken sort control doesn't silently ship
 
-  @Scenario-1 @positive
+  @Scenario-1 @C9 @positive
   Scenario Outline: Sorting actually reorders the product list
     Given I am logged in to SauceDemo
     When I sort products by "<sortOption>"
@@ -15,7 +15,7 @@ Feature: Product catalog sorting
       | Price (low to high) | ascending     |
       | Price (high to low) | descending    |
 
-  @Scenario-2 @negative
+  @Scenario-2 @C10 @negative
   Scenario: problem_user's price sort is broken
     Given I am logged in to SauceDemo as "problem_user"
     When I sort products by "Price (high to low)"

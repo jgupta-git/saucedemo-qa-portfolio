@@ -7,7 +7,7 @@ Feature: Login page validation
   Background:
     Given I am on the SauceDemo login page
 
-  @Scenario-1 @positive @smoke
+  @Scenario-1 @C2 @positive @smoke
   Scenario Outline: All non-restricted users can log in successfully
     When I log in with username "<username>" using the universal password
     Then I should be logged in successfully
@@ -20,12 +20,12 @@ Feature: Login page validation
       | error_user              |
       | visual_user             |
 
-  @Scenario-2 @negative
+  @Scenario-2 @C3 @negative
   Scenario: A locked-out user is refused login
     When I log in with username "locked_out_user" using the universal password
     Then I should see the login error "Epic sadface: Sorry, this user has been locked out."
 
-  @Scenario-3 @negative
+  @Scenario-3 @C4 @negative
   Scenario Outline: An empty or unknown username is rejected even with the correct password
     When I log in with username "<username>" using the universal password
     Then I should see the login error "<expectedError>"
@@ -35,7 +35,7 @@ Feature: Login page validation
       |              | Epic sadface: Username is required                                        |
       | invalid_user | Epic sadface: Username and password do not match any user in this service |
 
-  @Scenario-4 @negative
+  @Scenario-4 @C5 @negative
   Scenario Outline: An empty or wrong password is rejected even with a valid username
     When I log in with username "<username>" and password "<password>"
     Then I should see the login error "<expectedError>"

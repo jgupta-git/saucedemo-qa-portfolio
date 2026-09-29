@@ -4,7 +4,7 @@ Feature: PDF order receipt
   I want to download a PDF of my order
   So that I have a record that actually matches what I was charged
 
-  @Scenario-1 @positive
+  @Scenario-1 @C6 @positive
   Scenario Outline: The on-screen and PDF receipt totals match the expected price
     Given I am on the SauceDemo login page
     And I log in with username "<username>" using the universal password
