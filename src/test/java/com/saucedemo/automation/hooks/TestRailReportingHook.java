@@ -122,14 +122,13 @@ public class TestRailReportingHook {
         try {
             // Construct TestRail API endpoint
             String apiUrl = String.format(
-                "%s/index.php?/api/v2/add_result_for_case/%s/%s/%s",
+                "%s/index.php?/api/v2/add_result/%s/%s",
                 TESTRAIL_URL,
-                TESTRAIL_PROJECT_ID,
                 TESTRAIL_RUN_ID,
                 caseId
             );
 
-            // Build JSON body
+            // Build JSON body (include status_id and comment)
             String jsonBody = String.format(
                 "{\"status_id\": %d, \"comment\": \"%s\"}",
                 statusId,
