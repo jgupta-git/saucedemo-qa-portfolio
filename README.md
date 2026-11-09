@@ -6,7 +6,7 @@ Java 11 | Playwright for Java 1.63.0 | Cucumber 7.34.9 | JUnit 4.13.2 | Apache P
 
 Test Target: [SauceDemo](https://www.saucedemo.com) (public e-commerce demo)
 Testing Framework: Playwright for Java with Cucumber (BDD) on JUnit 4
-Architecture: Layered (Steps → Service → Page Object), with DTOs for test data
+Architecture: Layered (Steps → Service → Page Object), with DTOs for test data ([architecture diagram (PDF)](https://github.com/jgupta-git/saucedemo-qa-portfolio/blob/main/architecture-diagram.pdf))
 Reporting: Cucumber HTML report with screenshots, plus TestRail results from a custom hook
 Tagging System: `@positive`, `@negative`, `@smoke`, and one `@Scenario-N` tag per scenario
 
